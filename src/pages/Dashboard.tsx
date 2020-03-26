@@ -1,6 +1,5 @@
 import React from "react";
 import { Block, Text } from "expo-ui-kit";
-// import { Container } from './styles';
 
 const Dashboard: React.FC = () => {
   return (

@@ -1,13 +1,7 @@
 import React from "react";
-import { Block, Text } from "expo-ui-kit";
-import { NavigationContainer } from "@react-navigation/native";
 
-import Drawer from "./routes/Drawer";
+import Navigation from "./routes";
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Drawer />
-    </NavigationContainer>
-  );
+  return <Navigation />;
 }

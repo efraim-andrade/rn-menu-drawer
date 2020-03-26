@@ -1,49 +1,18 @@
 import React, { useState } from "react";
 import { Image } from "react-native";
+import { Block, Text } from "expo-ui-kit";
+import { AntDesign } from "@expo/vector-icons";
 import Animated from "react-native-reanimated";
-import { Block, Button, Text } from "expo-ui-kit";
 import { LinearGradient } from "expo-linear-gradient";
-import { Feather, AntDesign } from "@expo/vector-icons";
-import { createStackNavigator } from "@react-navigation/stack";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItem
 } from "@react-navigation/drawer";
 
-import { Dashboard, Contact, Messages } from "../pages";
+import Screens from "./Stack";
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
-
-const Screens: React.FC<any> = ({ navigation, style }) => {
-  const options = {
-    headerTransparent: true,
-    headerTitle: null,
-    headerLeft: ({}) => (
-      <Button
-        padding
-        transparent
-        marginHorizontal
-        onPress={() => navigation.openDrawer()}
-      >
-        <Text white small>
-          <Feather name="menu" size={24} color="#333" />
-        </Text>
-      </Button>
-    )
-  };
-
-  return (
-    <Animated.View style={[{ flex: 1, overflow: "hidden" }, style]}>
-      <Stack.Navigator screenOptions={options}>
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="Contact" component={Contact} />
-        <Stack.Screen name="Messages" component={Messages} />
-      </Stack.Navigator>
-    </Animated.View>
-  );
-};
 
 const DrawerContent = ({ navigation, ...rest }) => {
   return (
