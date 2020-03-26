@@ -1,5 +1,5 @@
-import React from "react";
-import { Block, Text } from "expo-ui-kit";
+import React from 'react';
+import { Block, Text } from 'expo-ui-kit';
 
 const Contact: React.FC = () => {
   return (

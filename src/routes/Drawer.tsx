@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Image } from "react-native";
-import { Block, Text } from "expo-ui-kit";
-import { AntDesign } from "@expo/vector-icons";
-import Animated from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from 'react';
+import { Image, ViewStyle } from 'react-native';
+import { Block, Text } from 'expo-ui-kit';
+import { AntDesign } from '@expo/vector-icons';
+import Animated from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItem
-} from "@react-navigation/drawer";
+  DrawerItem,
+} from '@react-navigation/drawer';
 
-import Screens from "./Stack";
+import Screens from './Stack';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,9 +22,9 @@ const DrawerContent = ({ navigation, ...rest }) => {
           <Image
             source={{
               uri:
-                "https://avatars1.githubusercontent.com/u/28229600?s=460&u=091aba50d4e61541054ff4b6c9d4e7927a3619c5&v=4",
+                'https://avatars1.githubusercontent.com/u/28229600?s=460&u=091aba50d4e61541054ff4b6c9d4e7927a3619c5&v=4',
               height: 60,
-              width: 60
+              width: 60,
             }}
             resizeMode="center"
             style={{ borderRadius: 30 }}
@@ -39,21 +39,21 @@ const DrawerContent = ({ navigation, ...rest }) => {
         <Block>
           <DrawerItem
             label="Dashboard"
-            onPress={() => navigation.navigate("Dashboard")}
+            onPress={() => navigation.navigate('Dashboard')}
             labelStyle={{ marginLeft: -16 }}
             icon={() => <AntDesign name="dashboard" size={16} />}
           />
 
           <DrawerItem
             label="Messages"
-            onPress={() => navigation.navigate("Messages")}
+            onPress={() => navigation.navigate('Messages')}
             labelStyle={{ marginLeft: -16 }}
             icon={() => <AntDesign name="message1" size={16} />}
           />
 
           <DrawerItem
             label="Contact"
-            onPress={() => navigation.navigate("Contact")}
+            onPress={() => navigation.navigate('Contact')}
             labelStyle={{ marginLeft: -16 }}
             icon={() => <AntDesign name="phone" size={16} />}
           />
@@ -64,33 +64,38 @@ const DrawerContent = ({ navigation, ...rest }) => {
 };
 
 const DrawerContainer: React.FC = () => {
-  const [progress, setProgress] = useState(new Animated.Value(0));
+  const [progress, setProgress] = useState<Animated.Node<number>>(
+    new Animated.Value(0)
+  );
 
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
-    outputRange: [1, 0.8]
+    outputRange: [1, 0.8],
   });
 
   const borderRadius = Animated.interpolate(progress, {
     inputRange: [0, 1],
-    outputRange: [0, 12]
+    outputRange: [0, 12],
   });
 
-  const screensStyles = { borderRadius, transform: [{ scale }] };
+  const screensStyles: {
+    borderRadius: Animated.Node<number>;
+    transform: { scale: Animated.Node<number> }[];
+  } = { borderRadius, transform: [{ scale }] };
 
   return (
-    <LinearGradient style={{ flex: 1 }} colors={["#fff", "#fff"]}>
+    <LinearGradient style={{ flex: 1 }} colors={['#fff', '#fff']}>
       <Drawer.Navigator
         initialRouteName="Dashboard"
         drawerType="slide"
         overlayColor="transparent"
-        drawerStyle={{ width: "50%", backgroundColor: "transparent" }}
+        drawerStyle={{ width: '50%', backgroundColor: 'transparent' }}
         drawerContentOptions={{
-          activeBackgroundColor: "transparent",
-          activeTintColor: "green",
-          inactiveTintColor: "green"
+          activeBackgroundColor: 'transparent',
+          activeTintColor: 'green',
+          inactiveTintColor: 'green',
         }}
-        sceneContainerStyle={{ backgroundColor: "transparent" }}
+        sceneContainerStyle={{ backgroundColor: 'transparent' }}
         drawerContent={props => {
           setProgress(props.progress);
 
